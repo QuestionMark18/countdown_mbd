@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #1a1a1a;
+}
+
+/* === Circle === */
+#time {
+    display: flex;
+    gap: 30px;
+}
+
+#time .circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#time .circle svg {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transform: rotate(270deg);
+}
+
+#time .circle svg circle {
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke-width: 8;
+    stroke: #2a2a2a;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+}
+
+#time .circle svg circle:nth-child(2) {
+    stroke: var(--color);
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+}
+
+/* === Text in circle === */
+#time div {
+    position: absolute;
+    text-align: center;
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 1.8em;
+}
+
+#time div span {
+    position: absolute;
+    transform: translate(-50%, -80%);
+    font-size: .3em;
+    font-weight: 300;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+/* === Dots === */
+#time .dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 10000;
+}
+
+#time .dots::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    width: 18px;
+    height: 18px;
+    background: var(--color);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--color), 0 0 50px var(--color);
+}
+
+.myBirthday{
+    font-size: 8em;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: .6em;
+    display: none;
+}
+
+.myBirthday span {
+    font-size: .5em;
+    font-weight: 300;
+}

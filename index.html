@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Countdown</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="time">
+        <div class="circle" style="--color:#FF4931">
+            <div class="dots day_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle id="dd" cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div id="days">00<br><span>Days</span></div>
+        </div>
+        <div class="circle" style="--color:#5DE700">
+            <div class="dots hour_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle id="hh" cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div id="hours">00<br><span>Hours</span></div>
+        </div>
+        <div class="circle" style="--color:#FFD000">
+            <div class="dots minute_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle id="mm" cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div id="minutes">00<br><span>Minutes</span></div>
+        </div>
+        <div class="circle" style="--color:#0077FF">
+            <div class="dots second_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle id="ss" cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div id="seconds">00<br><span>Seconds</span></div>
+        </div>
+    </div>
+    <h2 class="myBirthday">30/03/2003<br><span>Happy My Birthday</span></h2>
+
+    <script>
+        let days = document.getElementById('days')
+        let hours = document.getElementById('hours')
+        let minutes = document.getElementById('minutes')
+        let seconds = document.getElementById('seconds')
+
+        let dd = document.getElementById('dd')
+        let hh = document.getElementById('hh')
+        let mm = document.getElementById('mm')
+        let ss = document.getElementById('ss')
+
+        let day_dot = document.querySelector('.day_dot')
+        let hour_dot = document.querySelector('.hour_dot')
+        let minute_dot = document.querySelector('.minute_dot')
+        let second_dot = document.querySelector('.second_dot')
+
+        let endDate = '03/30/2023 00:00:00'
+        // MM/DD/YYYY (date format)
+
+        let t = setInterval(function() {
+            let now = new Date(endDate).getTime()
+            let countDown = new Date().getTime()
+            let distance = now - countDown
+
+            // time calculationc
+            let d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+            let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+            let s = Math.floor((distance % (1000 * 60)) / (1000))
+
+            days.innerHTML = d + '<br><span>Days</span>'
+            hours.innerHTML = h + '<br><span>Hours</span>'
+            minutes.innerHTML = m + '<br><span>Minutes</span>'
+            seconds.innerHTML = s + '<br><span>Seconds</span>'
+            
+            dd.style.strokeDashoffset = 440 - (440 * d) / 365
+            hh.style.strokeDashoffset = 440 - (440 * h) / 24
+            mm.style.strokeDashoffset = 440 - (440 * m) / 60
+            ss.style.strokeDashoffset = 440 - (440 * s) / 60
+            
+            day_dot.style.transform = `rotateZ(${d * (360 / 365)}deg)`
+            hour_dot.style.transform = `rotateZ(${h * 15}deg)`
+            minute_dot.style.transform = `rotateZ(${m * 6}deg)`
+            second_dot.style.transform = `rotateZ(${s * 6}deg)`
+            
+            if(distance < 0) {
+                clearInterval(t)
+                document.getElementById('time').style.display = 'none'
+                document.querySelector('.myBirthday').style.display = 'block'
+            }
+            })
+    </script>
+</body>
+</html>
